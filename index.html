@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tackle Debts</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.min.js"
+      charset="utf-8">
+    </script>
+    <style media="screen">
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #E1E1E1;
+      }
+
+      #board {
+        min-width: 90vw;
+        max-width: 90vw;
+        min-height: 90vh;
+        margin-top: 50px;
+        margin-left: 50px;
+        padding-left: 5px;
+        padding-top: 5px;
+        border-left: 3px solid #000000;
+        border-bottom: 3px solid #000000;
+      }
+
+      .is-grid {
+        display: grid;
+        grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+        grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+      }
+
+      .quadrant {
+        padding: 5px;
+      }
+
+      #upper-left-quadrant {
+        grid-row-start: 1;
+        grid-row-end: 6;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        border-right: dashed 2px #000000;
+        background-color: #C92D2D;
+      }
+
+      #upper-right-quadrant {
+        grid-row-start: 1;
+        grid-row-end: 6;
+        grid-column-start: 6;
+        grid-column-end: 11;
+        background-color: yellow;
+      }
+
+      #lower-left-quadrant {
+        grid-row-start: 6;
+        grid-row-end: 11;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        border-top: dashed 2px #000000;
+        border-right: dashed 2px #000000;
+        background-color: yellow;
+      }
+
+      #lower-right-quadrant {
+        grid-row-start: 6;
+        grid-row-end: 11;
+        grid-column-start: 6;
+        grid-column-end: 11;
+        border-top: dashed 2px #000000;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="board-container">
+      <board></board>
+    </div>
+
+    <script type="text/x-template" id="board-quadrant-template">
+      <div class="quadrant">
+        <p>I am quadrant.</p>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="board-template">
+      <div class="is-grid" id="board">
+        <quadrant class="quadrant" id="upper-left-quadrant"></quadrant>
+        <quadrant class="quadrant" id="upper-right-quadrant"></quadrant>
+        <quadrant class="quadrant" id="lower-left-quadrant"></quadrant>
+        <quadrant class="quadrant" id="lower-right-quadrant"></quadrant>
+      </div>
+    </script>
+
+    <script type="text/javascript">
+      Vue.component('quadrant', {
+        template: "#board-quadrant-template"
+      });
+
+      Vue.component('board', {
+        template: "#board-template"
+      });
+
+      new Vue({
+        el: "#board-container"
+      })
+    </script>
+  </body>
+</html>
